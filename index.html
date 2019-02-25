@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>UFO Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">UFO Sightings
+            <img class="nav-ufo" src="static/images/ufo.svg">
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="hero text-center">
+      <h1>UFO Sightings</h1>
+      <p>The Truth is Out There</p>
+    </div>
+    <div class="container">
+      <div class="row margin-top-50">
+        <div class="col-md-2">
+          <aside class="filters">
+            <div class="panel panel-default">
+              <div class="panel-heading">Filter Search</div>
+              <div class="panel-body">
+                <form>
+                  <div class="form-group">
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">
+                        <label for="append">Append Results</label>
+                        <input name="modeSelect" class="form-control radio-inline" type="radio" id="append" checked="checked" aria-label="Append Mode (default)">
+                        <label for="rewrite">Rewrite Results</label>
+                        <input name="modeSelect" class="form-control radio-inline" type="radio" id="rewrite" aria-label="Rewrite Mode">
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="datetime">Enter a Date</label>
+                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011" aria-label="Enter DD/MM/YYY to filter by date">
+                        <input name="sortSelect" type="radio" id="dateSort" class="radio-inline" aria-label="Sort by Date">
+                        <label for="dateSort">Sort by Date</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <label for="citySelect">Select City (hold shift to select multiple):</label>
+                        <select multiple class="form-control" id="citySelect" aria-label="Control or Shift to Select multiple cities">
+                        </select>
+                        <label for="citySearch">Enter a City</label>
+                        <input class="form-control" id="citySearch" type="text" placeholder="Search for City" aria-label="Search for City">
+                        <input name="sortSelect" type="radio" id="citySort" class="radio-inline" aria-label="Sort by City">
+                        <label for="citySort">Sort by City</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <label for="stateSelect">Select State (hold shift to select multiple):</label>
+                        <select multiple class="form-control" id="stateSelect" aria-label="Control or Shift to Select multiple states">
+                        </select>
+                        <label for="stateSearch">Enter a State</label>
+                        <input class="form-control" id="stateSearch" type="text" placeholder="Search for State" aria-label="Search for State">
+                        <input name="sortSelect" type="radio" id="stateSort" class="radio-inline" aria-label="Sort by State">
+                        <label for="stateSort">Sort by State</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item" id="countrySelect">
+                        <label for="country-all">All Countries</label>
+                        <input name="countrySelect" class="form-control radio-inline" id="country-all" type="radio" checked="checked" aria-label="Select all countries (default)">
+                        <label for="country-us">United States</label>
+                        <input name="countrySelect" class="form-control radio-inline" id="country-us" type="radio" aria-label="Select United States">
+                        <label for="country-ca">Canada</label>
+                        <input name="countrySelect" class="form-control radio-inline" id="country-ca" type="radio" aria-label="Select Canada">
+                        <input name="sortSelect" type="radio" id="countrySort" class="radio-inline" aria-label="Sort by Country">
+                        <label for="countrySort">Sort by Country</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <label for="shapeSelect">Select Shape (hold shift to select multiple):</label>
+                        <select multiple class="form-control" id="shapeSelect" aria-label="Control or Shift to Select multiple shapes">
+                        </select>
+                        <input name="sortSelect" type="radio" id="shapeSort" class="radio-inline" checked="checked" aria-label="Sort by Shape (default)">
+                        <label for="shapeSort">Sort by Shape</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <input name="sortSelect" type="radio" id="durationSort" class="radio-inline" aria-label="Sort by Duration">
+                        <label for="durationSort">Sort by Duration</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <label for="commentSearch">Search Comments</label>
+                        <input class="form-control" id="commentSearch" type="text" placeholder="Search" aria-label="Comment Search">
+                        </select>
+                        <input name="sortSelect" type="radio" id="commentSort" class="radio-inline" aria-label="Sort by Comment">
+                        <label for="commentSort">Sort by Comments</label>
+                      </li>
+                      <br>
+                      <li class="filter list-group-item">
+                        <label for="binSelect">Select Duration Group (hold shift to select multiple):</label>
+                        <select multiple class="form-control" id="binSelect" aria-label="Control or Shift to Select multiple time groups">
+                        </select>
+                        <input name="sortSelect" type="radio" id="binSort" class="radio-inline" aria-label="Sort by Time Group">
+                        <label for="binSort">Sort by Duration Group</label>
+                      </li>
+                    </ul>
+                  </div>
+                  <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div class="col-md-10">
+          <div id="table-area" class="">
+            <table id="ufo-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="table-head">Date</th>
+                  <th class="table-head">City</th>
+                  <th class="table-head">State</th>
+                  <th class="table-head">Country</th>
+                  <th class="table-head">Shape</th>
+                  <th class="table-head">Duration</th>
+                  <th class="table-head">Comments</th>
+                  <th class="table-head">Duration Group</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <span class="bottom">UFO Sightings</span>
+    </footer>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+  <!-- ¿ Why are the scripts at the end ?-->
+</body>
+
+</html>
